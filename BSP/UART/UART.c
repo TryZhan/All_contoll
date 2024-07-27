@@ -159,4 +159,6 @@ void UART_Trans_INST_IRQHandler(void)
 void HardFault_Handler()
 {
       printf("entry Error!!!!\r\n");
+      printf("!!!!\r\n");
+
 }
