@@ -3624,9 +3624,9 @@
       </Doc>
       <Doc>
         <Name>..\BSP\UART\UART.c</Name>
-        <ColumnNumber>63</ColumnNumber>
-        <TopLine>134</TopLine>
-        <CurrentLine>133</CurrentLine>
+        <ColumnNumber>18</ColumnNumber>
+        <TopLine>160</TopLine>
+        <CurrentLine>172</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

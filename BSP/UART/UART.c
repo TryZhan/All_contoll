@@ -1,6 +1,7 @@
 #include "UART.h"
 #include <string.h>
 #include "stdio.h"
+#include <stdlib.h>
 
 #define USART_RECEIVE_LENGTH 200
 
@@ -9,6 +10,31 @@ volatile int openmv4_recv_length = 0;         // 接收数据长度
 volatile char openmv4_recv_complete_flag = 0; // 接收数据完成标志位
 volatile unsigned char uart_data = 0;
 uint8_t data_start = 0;
+
+int num1, num2;
+
+
+/******************************************************************
+ * 函 数 名 称：OpenMV4_usart_config
+ * 函 数 说 明：
+ * 函 数 形 参：
+ * 函 数 返 回：无
+ ******************************************************************/
+void parseString(const char *input, int *var1, int *var2) {
+    // 使用 strtok 函数分割字符串
+    char *token = strtok((char *)input, ",");
+    if (token != NULL) {
+        *var1 = atoi(token); // 将第一个数字转换为整数
+        token = strtok(NULL, ",");
+        if (token != NULL) {
+            *var2 = atoi(token); // 将第二个数字转换为整数
+        }
+    }
+}
+
+
+
+
 /******************************************************************
  * 函 数 名 称：OpenMV4_usart_config
  * 函 数 说 明：
@@ -141,8 +167,10 @@ void UART_Trans_INST_IRQHandler(void)
             {
                   openmv4_recv_length = 0;
                   data_start = 0;
-                  // printf("%s\n", openmv4_recv_buff);
-                  printf("%s\n", openmv4_recv_buff);
+//                   printf("%s\n", openmv4_recv_buff);
+                  parseString(openmv4_recv_buff,&num1,&num2);
+//                 printf("%d\n%d\n", num1,num2);
+							
             }
 
             // 标记接收标志
@@ -159,6 +187,5 @@ void UART_Trans_INST_IRQHandler(void)
 void HardFault_Handler()
 {
       printf("entry Error!!!!\r\n");
-      printf("!!!!\r\n");
 
 }
