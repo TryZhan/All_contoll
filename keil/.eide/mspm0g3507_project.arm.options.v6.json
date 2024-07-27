@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "beforeBuildTasks": [
+        {
+            "name": "cmd.exe /C \"D:\\ti_mpsm0\\mspm0_sdk_2_01_00_03\\tools\\keil/syscfg.bat '$P' empty.syscfg\"",
+            "command": "cmd.exe /C \"D:\\ti_mpsm0\\mspm0_sdk_2_01_00_03\\tools\\keil/syscfg.bat '$P' empty.syscfg\"",
+            "disable": false,
+            "abortAfterFailed": true,
+            "stopBuildAfterFailed": true
+        }
+    ],
+    "afterBuildTasks": [],
+    "global": {
+        "use-microLIB": false,
+        "output-debug-info": "enable"
+    },
+    "c/cpp-compiler": {
+        "optimization": "level-2",
+        "language-c": "c99",
+        "language-cpp": "c++11",
+        "link-time-optimization": false,
+        "one-elf-section-per-function": true,
+        "short-enums#wchar": true,
+        "warnings": "misra-compatible"
+    },
+    "asm-compiler": {
+        "$use": "asm-auto"
+    },
+    "linker": {
+        "output-format": "elf",
+        "misc-controls": "D:\\ti_mpsm0\\mspm0_sdk_2_01_00_03\\source\\ti\\driverlib\\lib\\keil\\m0p\\mspm0g1x0x_g3x0x\\driverlib.a",
+        "xo-base": "",
+        "ro-base": "0x00000000",
+        "rw-base": "0x20000000",
+        "$disableOutputTask": true
+    }
+}
