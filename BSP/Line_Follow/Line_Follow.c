@@ -10,10 +10,10 @@
 */
 void GetLineWalking(int *p_iL1, int *p_iL2, int *p_iR1, int *p_iR2)
 {
-    *p_iL1 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Left1_PIN);
-	*p_iL2 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Left2_PIN);
-	*p_iR1 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Right1_PIN);
-	*p_iR2 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Right2_PIN);	
+		*p_iL1 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Left1_PIN);
+		*p_iL2 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Left2_PIN);
+		*p_iR1 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Right1_PIN);
+		*p_iR2 = DL_GPIO_readPins(GPIO_LineGet_PORT, GPIO_LineGet_PIN_Line_Right2_PIN);	
 }
 
 /**

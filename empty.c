@@ -38,31 +38,27 @@
 
 int main(void)
 {
+	
 	 SYSCFG_DL_init();
-
-	 board_init();
-   	
+	 board_init();  	
 	 OLED_Init();
 	 OLED_Clear();
 	 OpenMV4_usart_config();
-
-	 NVIC_ClearPendingIRQ(TIMER_0_INST_INT_IRQN);				//清除定时器中断标志
-	
+	 NVIC_ClearPendingIRQ(TIMER_0_INST_INT_IRQN);				//清除定时器中断标志	
 	 NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);						//使能定时器中断
 	 NVIC_EnableIRQ(GPIO_Encoder_INT_IRQN);						//开启编码器的GPIOB外部中断	
 
 	
-	
-	float i = 0.0;
-    while (1)
-    {
-		//Openmv4DataAnalysis();
-//			LineWalking();
-//		Motor_Stop(0);
-	//			delay_ms(1000);
-		//printf("start\r\n");
 
-	}
+		while (1)
+		{
+			
+//				LineWalking();
+//				Motor_Stop(0);
+				Motor_straight(RecvPWM);
+				printf("%f\r\n",RecvPWM);
+
+		 }
 }
 
 

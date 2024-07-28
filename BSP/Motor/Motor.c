@@ -62,7 +62,7 @@ void Motor_straight(float speed)										//电机直行,两轮正转
 	
 }
 
-void Motor_Turnleft(float speed)										//电机左转，左电机反转，右电机正转
+void Motor_Turnleft(float speed)										//方向左转，左电机反转，右电机正转
 {
 	PwmA_Duty_Set(Duty_Limit(speed),0);																
 	PwmA_Duty_Set(0,1);
@@ -72,7 +72,7 @@ void Motor_Turnleft(float speed)										//电机左转，左电机反转，右电机正转
 
 }
 
-void Motor_TurnRight(float speed)										//电机右转，左电机正转，右电机反转
+void Motor_TurnRight(float speed)										//方向右转，左电机正转，右电机反转
 {
 	PwmA_Duty_Set(0,0);																
 	PwmA_Duty_Set(Duty_Limit(speed),1);

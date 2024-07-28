@@ -9,6 +9,6 @@
 extern void OpenMV4_usart_config(void);
 extern void Openmv4DataAnalysis(void);
 extern void HardFault_Handler();
-
+extern float RecvPWM;
 
 #endif

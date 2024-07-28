@@ -24,6 +24,7 @@ void PwmB_Duty_Set(float Duty,uint8_t channel)				//PWMÆµÂÊÎª1kHz
 //timerClkFreq = (timerClkSrc / (timerClkDivRatio * (timerClkPrescale + 1)))
 {
 	uint32_t CompareValue = 4000 - (1 - Duty) * 4000;
+	
 	switch(channel){
 		case 0:
 			DL_TimerG_setCaptureCompareValue(PWM_MotorB_INST,CompareValue,GPIO_PWM_MotorB_C0_IDX);			
