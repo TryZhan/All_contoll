@@ -53,16 +53,19 @@ int main(void)
 
 	
 	
-	float i = 0.0;
+
     while (1)
     {
-		//Openmv4DataAnalysis();
-//			LineWalking();
-//		Motor_Stop(0);
-	//			delay_ms(1000);
-		//printf("start\r\n");
+	
+			LineWalking();
+		
+//			Motor_Turnleft(50);
+//		  Motor_straight(0);
+//			printf("%d\n",Data_Pwm); 
+//				Motor_TurnRight(100);
 
-	}
+//			Motor_Stop(0);
+		}
 }
 
 

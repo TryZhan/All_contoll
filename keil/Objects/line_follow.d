@@ -85,4 +85,5 @@
   D:\ti_mpsm0\mspm0_sdk_2_01_00_03\source\ti\driverlib\m0p\dl_systick.h \
   ..\BSP\PWM\PWM.h ..\BSP\Motor\Motor.h ..\BSP\Encoder\Encoder.h \
   ..\BSP\OLED\oled.h D:\Keil_v5_7.25\ARM\ARMCLANG\include\stdlib.h \
-  ..\BSP\UART\UART.h
+  ..\BSP\UART\UART.h D:\Keil_v5_7.25\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5_7.25\ARM\ARMCLANG\include\stdio.h

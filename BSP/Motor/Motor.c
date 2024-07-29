@@ -8,7 +8,7 @@
 
 uint8_t direction = 0;											//电机状态标志位   1正转    0反转
 uint8_t STAO = 0;   											//启停标志位       1启动    0停止
-uint16_t velocity = 299;										//速度变量
+uint16_t Vlocity_init = 3200;										//速度变量
 
 /*
 *装载函数
@@ -43,12 +43,19 @@ int GPF_abs(int x)
 *入口函数：speed
 *出口函数：PWM值
 */
-float Duty_Limit(float Duty)
+float Duty_Limit(int16_t Duty)
 {
-	if(Duty > 1.0) Duty = 1.0;
-	else if(Duty < 0.0) Duty = 0.0;
+	
+		if(Duty >= 1023)
+			Duty =  4000;	
+		else
+				Duty = Vlocity_init - Vlocity_init * Duty / 1023;
+			//Duty = (Duty * 4000) / 1023;
 
-	return Duty;
+//		if(Duty >= 4000)
+//			 Duty =  4000;	
+		
+		return Duty;
 }
 
 
@@ -62,23 +69,23 @@ void Motor_straight(float speed)										//电机直行,两轮正转
 	
 }
 
-void Motor_Turnleft(float speed)										//电机左转，左电机反转，右电机正转
+void Motor_Turnleft(float speed)										//小车左转，左电机反转，右电机正转
 {
-	PwmA_Duty_Set(Duty_Limit(speed),0);																
-	PwmA_Duty_Set(0,1);
+	PwmA_Duty_Set(0,0);																
+	PwmA_Duty_Set(Duty_Limit(0),1);
 
 	PwmB_Duty_Set(0,0);
 	PwmB_Duty_Set(Duty_Limit(speed),1);
 
 }
 
-void Motor_TurnRight(float speed)										//电机右转，左电机正转，右电机反转
+void Motor_TurnRight(float speed)										//小车右转，左电机正转，右电机反转
 {
 	PwmA_Duty_Set(0,0);																
 	PwmA_Duty_Set(Duty_Limit(speed),1);
 
-	PwmB_Duty_Set(Duty_Limit(speed),0);
-	PwmB_Duty_Set(0,1);
+	PwmB_Duty_Set(0,0);
+	PwmB_Duty_Set(Duty_Limit(0),1);
 
 }
 

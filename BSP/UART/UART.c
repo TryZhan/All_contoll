@@ -10,7 +10,7 @@ volatile int openmv4_recv_length = 0;         // 接收数据长度
 volatile char openmv4_recv_complete_flag = 0; // 接收数据完成标志位
 volatile unsigned char uart_data = 0;
 uint8_t data_start = 0;
-
+int16_t Data_Pwm = 0;
 int num1, num2;
 
 
@@ -136,52 +136,50 @@ void UART_Trans_INST_IRQHandler(void)
 {
       char RecvDATA = 0;
 
-      //	RecvDATA = DL_UART_Main_receiveData(UART_Trans_INST);
+      RecvDATA = DL_UART_Main_receiveData(UART_Trans_INST);
       // 将保存的数据再发送出去
-      //	DL_UART_Main_transmitData(UART_Trans_INST,RecvDATA);
+     	DL_UART_Main_transmitData(UART_Trans_INST,RecvDATA);
+ 
+			Data_Pwm = (int)RecvDATA;
 
-      //		printf("%d\n",RecvDATA);
-      // 如果产生了串口中断printf():
+//      switch (DL_UART_getPendingInterrupt(UART_Trans_INST))
+//      {
+//      case DL_UART_IIDX_RX: // 如果是接收中断
 
-      switch (DL_UART_getPendingInterrupt(UART_Trans_INST))
-      {
-      case DL_UART_IIDX_RX: // 如果是接收中断
+//            // 接收发送过来的数据保存
+//            RecvDATA = DL_UART_Main_receiveData(UART_Trans_INST);
+//            // printf("%c\n",RecvDATA);
 
-            // 接收发送过来的数据保存
-            RecvDATA = DL_UART_Main_receiveData(UART_Trans_INST);
-            // printf("%c\n",RecvDATA);
-            // 检查缓冲区是否已满
+//            if (data_start == 1 && RecvDATA != '[' && RecvDATA != ']')
+//            {
 
-            if (data_start == 1 && RecvDATA != '[' && RecvDATA != ']')
-            {
+//                  openmv4_recv_buff[openmv4_recv_length++] = RecvDATA;
+//            }
 
-                  openmv4_recv_buff[openmv4_recv_length++] = RecvDATA;
-            }
+//            if (openmv4_recv_length == 0 && RecvDATA == '[')
+//            {
+//                  data_start = 1;
+//                  // printf("%c\n",RecvDATA);
+//            }
+//            if (RecvDATA == ']')
+//            {
+//                  openmv4_recv_length = 0;
+//                  data_start = 0;
+////                   printf("%s\n", openmv4_recv_buff);
+//                  parseString(openmv4_recv_buff,&num1,&num2);
+////                 printf("%d\n%d\n", num1,num2);
+//							
+//            }
 
-            if (openmv4_recv_length == 0 && RecvDATA == '[')
-            {
-                  data_start = 1;
-                  // printf("%c\n",RecvDATA);
-            }
-            if (RecvDATA == ']')
-            {
-                  openmv4_recv_length = 0;
-                  data_start = 0;
-//                   printf("%s\n", openmv4_recv_buff);
-                  parseString(openmv4_recv_buff,&num1,&num2);
-//                 printf("%d\n%d\n", num1,num2);
-							
-            }
+//            // 标记接收标志
+//            //                    openmv4_recv_complete_flag = 1;
 
-            // 标记接收标志
-            //                    openmv4_recv_complete_flag = 1;
+//            break;
 
-            break;
+//      default: // 其他的串口中断
 
-      default: // 其他的串口中断
-
-            break;
-      }
+//            break;
+//      }
 }
 
 void HardFault_Handler()
